@@ -6,7 +6,7 @@ gh-clone() {
 		##
 		# Installation instructions, source and license available here:
 		# https://github.com/fibo/gh-clone#gh-clone
-	
+		##
 		USAGE: gh-clone [user/]repo
 		EOF
 		return 0
@@ -37,6 +37,20 @@ gh-clone() {
 			$NPM install
 		fi
 	fi
+	if [ -e bower.json ]
+	then
+		BOWER=$(which bower 2> /dev/null)
+		if [ ! -z "$BOWER" ]
+		then
+			$BOWER install
+		fi
+	fi
+	unset BOWER
+	unset GITHUB_DIR
 	unset GITHUB_USER
+	unset MY_GITHUB_USER
+	unset NPM
 	unset REPO_NAME
+	unset REPO_URL
+	unset TARGET_DIR
 }

@@ -18,7 +18,7 @@ Do not edit *fun.sh*, run instead `make fun` to generate source from this file.
     	##
     	# Installation instructions, source and license available here:
     	# https://github.com/fibo/gh-clone#gh-clone
-    
+    	##
     	USAGE: gh-clone [user/]repo
     	EOF
     	return 0
@@ -68,10 +68,27 @@ Clone repo under `$GITHUB_DIR/$GITHUB_USER/$REPO_NAME` and cd into it.
     	fi
     fi
 
+… and run `bower install` if  there is a *bower.json* anb *bower* is found in your `PATH`.
+
+    if [ -e bower.json ]
+    then
+    	BOWER=$(which bower 2> /dev/null)
+    	if [ ! -z "$BOWER" ]
+    	then
+    		$BOWER install
+    	fi
+    fi
+
 Clean up
 
+    unset BOWER
+    unset GITHUB_DIR
     unset GITHUB_USER
+    unset MY_GITHUB_USER
+    unset NPM
     unset REPO_NAME
+    unset REPO_URL
+    unset TARGET_DIR
 
 ## Installation
 
