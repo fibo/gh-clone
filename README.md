@@ -2,7 +2,9 @@
 
 > GitHub clone repo util
 
-Very simple bash function that let you clone git repositories quickly.
+[![KLP](https://img.shields.io/badge/kiss-literate-orange.svg)](http://g14n.info/kiss-literate-programming)
+
+Very simple bash function that let you quicly clone git your repositories stored on GitHub.
 
 Ah, and it is also my first bash literate programming experiment.
 Do not edit *fun.sh*, run instead `make fun` to generate source from this file.
