@@ -4,10 +4,12 @@
 
 [![KLP](https://img.shields.io/badge/kiss-literate-orange.svg)](http://g14n.info/kiss-literate-programming)
 
-Very simple bash function that let you quicly clone git your repositories stored on GitHub.
+Very simple bash function that let you quickly clone git your repositories stored on GitHub.
 
 Ah, and it is also my first bash literate programming experiment.
 Do not edit *fun.sh*, run instead `make fun` to generate source from this file.
+
+See also [bb-clone](http://g14n.info/bb-clone) twin project, which do the same but on Bitbucket.
 
 ## Annotated source
 
