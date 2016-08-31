@@ -54,12 +54,13 @@ In the latter case `$GITHUB_USER` defaults to `$MY_GITHUB_USER`.
     fi
 
 Clone repo under `$GITHUB_DIR/$GITHUB_USER/$REPO_NAME` and cd into it.
+Use `git clone --recursive` to initialize and updated submodules.
 
     TARGET_DIR=$GITHUB_DIR/$GITHUB_USER
     mkdir -p $TARGET_DIR
     cd $TARGET_DIR
     REPO_URL=git@github.com:$GITHUB_USER/${REPO_NAME}.git
-    git clone $REPO_URL && cd $REPO_NAME
+    git clone --recursive $REPO_URL && cd $REPO_NAME
 
 **Bonus feature**: run `npm install` if it looks like a Node project and there is some *npm* available.
 
@@ -98,7 +99,7 @@ Clean up
 
 Instructions borrowed from [git-aware-prompt](https://github.com/jimeh/git-aware-prompt#installation).
 
-```
+```bash
 mkdir -p ~/.bash
 cd ~/.bash
 git clone git://github.com/fibo/gh-clone.git
@@ -106,7 +107,7 @@ git clone git://github.com/fibo/gh-clone.git
 
 Edit your *~/.bash_profile* or *~/.profile* and add the following
 
-```
+```bash
 source ~/.bash/gh-clone/fun.sh
 ```
 
