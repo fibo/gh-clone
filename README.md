@@ -62,31 +62,31 @@ Use `git clone --recursive` to initialize and updated submodules.
     REPO_URL=git@github.com:$GITHUB_USER/${REPO_NAME}.git
     git clone --recursive $REPO_URL && cd $REPO_NAME
 
-**Bonus feature**: run `npm install` if it looks like a Node project and there is some *npm* available.
+**Bonus feature**: run `yarn install` or `npm install` if it looks like a Node project.
 
     if [ -e package.json ]
     then
-    	NPM=$(which npm 2> /dev/null)
-    	if [ ! -z "$NPM" ]
-    	then
-    		$NPM install
-    	fi
+      if [ -e yarn.lock ]
+      then
+        YARN=$(which yarn 2> /dev/null)
+        if [ ! -z "$YARN" ]
+        then
+          $YARN install
+        fi
+      else
+        NPM=$(which npm 2> /dev/null)
+        if [ ! -z "$NPM" ]
+        then
+          $NPM install
+        fi
+      fi
     fi
 
 … and run `bower install` if  there is a *bower.json* anb *bower* is found in your `PATH`.
 
-    if [ -e bower.json ]
-    then
-    	BOWER=$(which bower 2> /dev/null)
-    	if [ ! -z "$BOWER" ]
-    	then
-    		$BOWER install
-    	fi
-    fi
-
 Clean up
 
-    unset BOWER
+    unset YARN
     unset GITHUB_DIR
     unset GITHUB_USER
     unset MY_GITHUB_USER
