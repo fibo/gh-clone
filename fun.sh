@@ -31,21 +31,22 @@ gh-clone() {
 	git clone --recursive $REPO_URL && cd $REPO_NAME
 	if [ -e package.json ]
 	then
-		NPM=$(which npm 2> /dev/null)
-		if [ ! -z "$NPM" ]
-		then
-			$NPM install
-		fi
+	  if [ -e yarn.lock ]
+	  then
+	    YARN=$(which yarn 2> /dev/null)
+	    if [ ! -z "$YARN" ]
+	    then
+	      $YARN install
+	    fi
+	  else
+	    NPM=$(which npm 2> /dev/null)
+	    if [ ! -z "$NPM" ]
+	    then
+	      $NPM install
+	    fi
+	  fi
 	fi
-	if [ -e bower.json ]
-	then
-		BOWER=$(which bower 2> /dev/null)
-		if [ ! -z "$BOWER" ]
-		then
-			$BOWER install
-		fi
-	fi
-	unset BOWER
+	unset YARN
 	unset GITHUB_DIR
 	unset GITHUB_USER
 	unset MY_GITHUB_USER
