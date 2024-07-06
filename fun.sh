@@ -15,8 +15,10 @@ gh-clone() {
 	MY_GITHUB_USER=$(git config --global github.user)
 	if [ -z "$MY_GITHUB_USER" ]
 	then
-		read -p "Enter your github.user: " MY_GITHUB_USER
-		git config --global github.user $MY_GITHUB_USER
+		cat <<-EOF
+			git config --global github.user <MY_GITHUB_USER>
+		EOF
+		return 0
 	fi
 	GITHUB_USER=$(echo $1 | cut -d / -f1)
 	REPO_NAME=$(echo $1 | cut -d / -f2)

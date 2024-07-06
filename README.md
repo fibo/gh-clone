@@ -37,8 +37,12 @@ Repos will be cloned under folder `$GITHUB_DIR` which defaults to *~/github.com*
     MY_GITHUB_USER=$(git config --global github.user)
     if [ -z "$MY_GITHUB_USER" ]
     then
-    	read -p "Enter your github.user: " MY_GITHUB_USER
-    	git config --global github.user $MY_GITHUB_USER
+    	cat <<-EOF
+	Missing github.user config, run a command like
+
+    		git config --global github.user <MY_GITHUB_USER>
+    	EOF
+    	return 0
     fi
 
 Parse parameter which can be given in the form `$GITHUB_USER/$REPO_NAME` or just `$REPO_NAME`.
