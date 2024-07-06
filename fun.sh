@@ -31,28 +31,9 @@ gh-clone() {
 	cd $TARGET_DIR
 	REPO_URL=git@github.com:$GITHUB_USER/${REPO_NAME}.git
 	git clone --recursive $REPO_URL && cd $REPO_NAME
-	if [ -e package.json ]
-	then
-	  if [ -e yarn.lock ]
-	  then
-	    YARN=$(which yarn 2> /dev/null)
-	    if [ ! -z "$YARN" ]
-	    then
-	      $YARN install
-	    fi
-	  else
-	    NPM=$(which npm 2> /dev/null)
-	    if [ ! -z "$NPM" ]
-	    then
-	      $NPM install
-	    fi
-	  fi
-	fi
-	unset YARN
 	unset GITHUB_DIR
 	unset GITHUB_USER
 	unset MY_GITHUB_USER
-	unset NPM
 	unset REPO_NAME
 	unset REPO_URL
 	unset TARGET_DIR

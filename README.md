@@ -58,7 +58,7 @@ In the latter case `$GITHUB_USER` defaults to `$MY_GITHUB_USER`.
     fi
 
 Clone repo under `$GITHUB_DIR/$GITHUB_USER/$REPO_NAME` and cd into it.
-Use `git clone --recursive` to initialize and updated submodules.
+Use `git clone --recursive` to initialize and update submodules.
 
     TARGET_DIR=$GITHUB_DIR/$GITHUB_USER
     mkdir -p $TARGET_DIR
@@ -66,56 +66,34 @@ Use `git clone --recursive` to initialize and updated submodules.
     REPO_URL=git@github.com:$GITHUB_USER/${REPO_NAME}.git
     git clone --recursive $REPO_URL && cd $REPO_NAME
 
-**Bonus feature**: run `yarn install` or `npm install` if it looks like a Node project.
-
-    if [ -e package.json ]
-    then
-      if [ -e yarn.lock ]
-      then
-        YARN=$(which yarn 2> /dev/null)
-        if [ ! -z "$YARN" ]
-        then
-          $YARN install
-        fi
-      else
-        NPM=$(which npm 2> /dev/null)
-        if [ ! -z "$NPM" ]
-        then
-          $NPM install
-        fi
-      fi
-    fi
-
-… and run `bower install` if  there is a *bower.json* anb *bower* is found in your `PATH`.
-
 Clean up
 
-    unset YARN
     unset GITHUB_DIR
     unset GITHUB_USER
     unset MY_GITHUB_USER
-    unset NPM
     unset REPO_NAME
     unset REPO_URL
     unset TARGET_DIR
 
 ## Installation
 
-Instructions borrowed from [git-aware-prompt](https://github.com/jimeh/git-aware-prompt#installation).
+To install, do something like the following.
+
+Clone the repo somewhere
 
 ```bash
-mkdir -p ~/.bash
-cd ~/.bash
+mkdir -p ~/.shell
+cd ~/.shell
 git clone git://github.com/fibo/gh-clone.git
 ```
 
-Edit your *~/.bash_profile* or *~/.profile* and add the following
+Edit your *~/.profile* and add the following
 
 ```bash
-source ~/.bash/gh-clone/fun.sh
+source ~/.shell/gh-clone/fun.sh
 ```
 
 ## License
 
-[MIT](http://g14n.info/mit-license)
+[MIT](https://fibo.github.io/mit-license)
 
