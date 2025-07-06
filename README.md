@@ -19,7 +19,7 @@ Do not edit *fun.sh*, run instead `make fun` to generate source from this file.
     	# GitHub clone repo util
     	##
     	# Installation instructions, source and license available here:
-    	# https://github.com/fibo/gh-clone#gh-clone
+    	# https://github.com/fibo/gh-clone
     	##
     	USAGE: gh-clone [user/]repo
     	EOF
@@ -28,7 +28,7 @@ Do not edit *fun.sh*, run instead `make fun` to generate source from this file.
 
 Repos will be cloned under folder `$GITHUB_DIR` which defaults to *~/github.com*.
 
-    GITHUB_DIR=${GITHUB_DIR:-~/github.com}
+    GITHUB_DIR=${GITHUB_DIR:-$HOME/github.com}
 
 `MY_GITHUB_USER` is prompted once, if not already configured.
 
@@ -45,12 +45,12 @@ Repos will be cloned under folder `$GITHUB_DIR` which defaults to *~/github.com*
 
 Parse parameter which can be given in the form `$GITHUB_USER/$REPO_NAME` or just `$REPO_NAME`.
 
-    GITHUB_USER=$(echo $1 | cut -d / -f1)
-    REPO_NAME=$(echo $1 | cut -d / -f2)
+    GITHUB_USER=$(echo "$1" | cut -d / -f1)
+    REPO_NAME=$(echo "$1" | cut -d / -f2)
 
 In the latter case `$GITHUB_USER` defaults to `$MY_GITHUB_USER`.
 
-    if [ "$REPO_NAME" == "$GITHUB_USER" ]
+    if [ "$REPO_NAME" = "$GITHUB_USER" ]
     then
     	GITHUB_USER=$MY_GITHUB_USER
     fi
@@ -94,4 +94,3 @@ source ~/.shell/gh-clone/fun.sh
 ## License
 
 [MIT](https://fibo.github.io/mit-license)
-

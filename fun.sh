@@ -5,13 +5,13 @@ gh-clone() {
 		# GitHub clone repo util
 		##
 		# Installation instructions, source and license available here:
-		# https://github.com/fibo/gh-clone#gh-clone
+		# https://github.com/fibo/gh-clone
 		##
 		USAGE: gh-clone [user/]repo
 		EOF
 		return 0
 	fi
-	GITHUB_DIR=${GITHUB_DIR:-~/github.com}
+	GITHUB_DIR=${GITHUB_DIR:-$HOME/github.com}
 	MY_GITHUB_USER=$(git config --global github.user)
 	if [ -z "$MY_GITHUB_USER" ]
 	then
@@ -20,9 +20,9 @@ gh-clone() {
 		EOF
 		return 0
 	fi
-	GITHUB_USER=$(echo $1 | cut -d / -f1)
-	REPO_NAME=$(echo $1 | cut -d / -f2)
-	if [ "$REPO_NAME" == "$GITHUB_USER" ]
+	GITHUB_USER=$(echo "$1" | cut -d / -f1)
+	REPO_NAME=$(echo "$1" | cut -d / -f2)
+	if [ "$REPO_NAME" = "$GITHUB_USER" ]
 	then
 		GITHUB_USER=$MY_GITHUB_USER
 	fi
