@@ -4,14 +4,20 @@
 
 [![KLP](https://fibo.github.io/svg/klp-badge.svg)](https://fibo.github.io/kiss-literate-programming)
 
-Very simple bash function that let you quickly clone git your repositories stored on GitHub.
+Very simple shell function that let you quickly clone GitHub repositories.
 
 Ah, and it is also my first bash literate programming experiment.
 Do not edit *fun.sh*, run instead `make fun` to generate source from this file.
 
+## Usage
+
+```sh
+gh-clone [user/]repo
+```
+
 ## Annotated source
 
-`gh-clone` expects one parameter, otherwise prints its **usage**
+`gh-clone` expects one parameter, otherwise it prints its **usage**
 
     if [ -z "$1" ]
     then
@@ -55,14 +61,27 @@ In the latter case `$GITHUB_USER` defaults to `$MY_GITHUB_USER`.
     	GITHUB_USER=$MY_GITHUB_USER
     fi
 
-Clone repo under `$GITHUB_DIR/$GITHUB_USER/$REPO_NAME` and cd into it.
+Create parent directory if it does not exist.
+
+    mkdir -p "$GITHUB_DIR/$GITHUB_USER"
+    cd "$GITHUB_DIR/$GITHUB_USER"
+
+Do nothing if the repo is already cloned.
+
+    if [ -d "$REPO_NAME" ]
+    then
+      echo "Repo directory $GITHUB_USER/$REPO_NAME already exists"
+    else
+
+Clone repo if folder does not exist.
 Use `git clone --recursive` to initialize and update submodules.
 
-    TARGET_DIR=$GITHUB_DIR/$GITHUB_USER
-    mkdir -p $TARGET_DIR
-    cd $TARGET_DIR
-    REPO_URL=git@github.com:$GITHUB_USER/${REPO_NAME}.git
-    git clone --recursive $REPO_URL && cd $REPO_NAME
+      git clone --recursive git@github.com:$GITHUB_USER/$REPO_NAME.git
+    fi
+
+Enter repo folder
+
+      cd $REPO_NAME
 
 Clean up
 
@@ -70,8 +89,6 @@ Clean up
     unset GITHUB_USER
     unset MY_GITHUB_USER
     unset REPO_NAME
-    unset REPO_URL
-    unset TARGET_DIR
 
 ## Installation
 

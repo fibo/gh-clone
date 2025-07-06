@@ -26,15 +26,17 @@ gh-clone() {
 	then
 		GITHUB_USER=$MY_GITHUB_USER
 	fi
-	TARGET_DIR=$GITHUB_DIR/$GITHUB_USER
-	mkdir -p $TARGET_DIR
-	cd $TARGET_DIR
-	REPO_URL=git@github.com:$GITHUB_USER/${REPO_NAME}.git
-	git clone --recursive $REPO_URL && cd $REPO_NAME
+	mkdir -p "$GITHUB_DIR/$GITHUB_USER"
+	cd "$GITHUB_DIR/$GITHUB_USER"
+	if [ -d "$REPO_NAME" ]
+	then
+	  echo "Repo directory $GITHUB_USER/$REPO_NAME already exists"
+	else
+	  git clone --recursive git@github.com:$GITHUB_USER/$REPO_NAME.git
+	fi
+	  cd $REPO_NAME
 	unset GITHUB_DIR
 	unset GITHUB_USER
 	unset MY_GITHUB_USER
 	unset REPO_NAME
-	unset REPO_URL
-	unset TARGET_DIR
 }
