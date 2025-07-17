@@ -2,7 +2,7 @@
 
 > GitHub clone repo util
 
-[![KLP](https://fibo.github.io/svg/klp-badge.svg)](https://fibo.github.io/kiss-literate-programming)
+[![KLP](https://fibo.github.io/svg/badges/klp.svg)](https://fibo.github.io/kiss-literate-programming)
 
 Very simple shell function that let you quickly clone GitHub repositories.
 
